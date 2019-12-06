@@ -1,0 +1,39 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /cmfz
+    jsp:
+      init-parameters:
+        development: true
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/cmfz?characterEncoding=UTF-8
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /
+  redis:
+    host: 121.199.0.220
+    port: 7521
+    database: 0
+  http:
+    encoding:
+      force-request: true
+      charset: UTF-8
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 30MB
+mybatis:
+  type-aliases-package: com.lml.entity
+  mapper-locations: classpath:com/lml/mapper/*Mapper.xml
+logging:
+  level:
+    com.lml.dao: debug
