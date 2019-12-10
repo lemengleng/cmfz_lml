@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Transactional
 @Service
@@ -22,12 +25,10 @@ public class BannerServiceImpl implements BannerService {
         return bannerDao.selectCount(new Banner());
     }
     @Transactional(propagation = Propagation.SUPPORTS)
-
     @Override
     public List<Banner> qyeryByPage(Integer begin, Integer end) {
         return bannerDao.selectByRowBounds(new Banner(),new RowBounds(begin,end));
     }
-
     @Override
     @LogAnnotation(value = "删除轮播图")
     public void deleteById(String id) {
@@ -37,6 +38,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public void updateById(Banner banner) {
         bannerDao.updateByPrimaryKeySelective(banner);
+
     }
     @LogAnnotation(value = "添加轮播图")
     @Override
@@ -47,7 +49,6 @@ public class BannerServiceImpl implements BannerService {
         hashMap.put("status",200);
         return hashMap;
     }
-
     @Override
     @LogAnnotation(value = "批量删除轮播图")
     public void deleteByList(String[] ids) {

@@ -1,5 +1,7 @@
 package com.lml.controller;
 
+import com.lml.annotation.AddCache;
+import com.lml.annotation.DelCache;
 import com.lml.entity.Banner;
 import com.lml.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class BannerController {
     @Autowired
     private BannerService bannerService;
+
+    @AddCache("")
     @RequestMapping("queryByPage")
     public Map<String,Object> queryByPage(Integer page, Integer rows, String searchString, Boolean _search, String searchField, String searchOper){
         Map<String,Object> map=new HashMap<String, Object>();
@@ -48,8 +51,10 @@ public class BannerController {
         map.put("records",records);
         return map;
     }
+
+    @DelCache
     @RequestMapping("cud")
-    public Map cud(String oper,Banner banner,String[] id){
+    public Map cud(String oper, Banner banner, String[] id){
         Map hashMap=new HashMap();
         if (oper.equals("add")){
             banner.setId(null);
@@ -66,6 +71,8 @@ public class BannerController {
         }
         return hashMap;
     }
+
+    @DelCache
     @RequestMapping("upload")
     public void upload(MultipartFile url, String bannerId, HttpServletRequest request) throws Exception {
         String realPath=request.getSession().getServletContext().getRealPath("/img");

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lml.dao.AdminDao">
+    <resultMap id="info" type="Admin">
+        <id property="id" column="aid"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <collection property="roles" ofType="Role">
+            <id property="id" column="rid"></id>
+            <result property="role_name" column="role_name"></result>
+            <collection property="resources" ofType="Resources">
+                <id property="id" column="reid"></id>
+                <result property="resource_name" column="resource_name"></result>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="queryAdminInfo" resultMap="info">
+        select a.id aid,a.username username,a.password password,
+        c.id rid,c.role_name role_name,
+        e.id reid,e.resource_name resource_name
+          from admin a LEFT JOIN admin_role b on a.id = b.admin_id
+          LEFT JOIN role c on b.role_id = c.id
+          LEFT JOIN role_resources d on c.id = d.role_id
+          LEFT JOIN resources e on d.resources_id = e.id
+          where a.username = #{username}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

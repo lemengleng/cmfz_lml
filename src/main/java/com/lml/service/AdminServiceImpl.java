@@ -15,6 +15,6 @@ public class AdminServiceImpl implements AdminService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Admin queryOne(String username) {
-        return adminDao.selectOne(new Admin(null,username,null));
+        return adminDao.selectOne(new Admin(null, username, null, null));
     }
 }

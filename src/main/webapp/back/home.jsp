@@ -1,4 +1,5 @@
 <%@page contentType="text/html; UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <% request.setAttribute("path",request.getContextPath());%>
 <!doctype html>
 <html>
@@ -35,6 +36,7 @@
                 }
             });
         });
+
     </script>
 </head>
 <body>
@@ -48,10 +50,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎13215467</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">欢迎<shiro:principal></shiro:principal></a>
             </li>
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出登录</a>
+                <a href="${path}/admin/logout" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">退出登录</a>
             </li>
         </ul>
     </div>

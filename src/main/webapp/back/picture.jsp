@@ -34,7 +34,7 @@
             rowList:[2,3,4,8],//生成可以指定显示每页展示多少条下拉列表
             viewrecords:true,//显示总记录数
             caption:"图片列表",//表格标题
-            cellEdit:true,//开启单元格编辑功能
+            cellEdit: false,//开启单元格编辑功能
             editurl:"${path}/banner/cud",//开启编辑时执行编辑操作的url路径  添加  修改  删除
             autowidth:true,//自适应外部容器
             height:300,//指定表格高度
